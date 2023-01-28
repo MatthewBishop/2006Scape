@@ -21,7 +21,7 @@ public class ClientSettings {
 	 * You don't have to change this, the client will automatically connect to the server
 	 * on localhost (Assuming you're running Client and LocalGame respectively)
 	 */
-	public static String SERVER_IP = "server.2006Scape.org";
+	public static String SERVER_IP = "localhost";
 	/**
 	 * The Servers World
 	 * This Determines The Port The Server Will Connect On
@@ -30,6 +30,13 @@ public class ClientSettings {
 	 */
 	public static int SERVER_WORLD = 1;
 
+	/**
+	 * If false, the server will run the on demand server on every world. If true it will
+	 * only connect to the server on world 1.
+	 */
+	public static boolean SINGLE_ONDEMAND  = true;
+
+	
 	/**
 	 * Enables/Disables FileServer CRC Checking For Cache Updates
 	 * FileServer Must Be Running Before Starting The Client If This Is True
