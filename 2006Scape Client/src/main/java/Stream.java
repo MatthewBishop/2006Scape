@@ -127,6 +127,14 @@ public final class Stream extends NodeSub {
 		return i;
 	}
 
+    public int readSignedWord2() {
+    	currentOffset += 2;
+        int i = ((buffer[currentOffset - 2] & 0xff) << 8) + (buffer[currentOffset - 1] & 0xff);
+        if (i > 32767)
+            i -= 65537;
+        return i;
+    }
+    
 	public int read3Bytes() {
 		currentOffset += 3;
 		return ((buffer[currentOffset - 3] & 0xff) << 16) + ((buffer[currentOffset - 2] & 0xff) << 8) + (buffer[currentOffset - 1] & 0xff);

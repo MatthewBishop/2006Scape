@@ -5,120 +5,106 @@
 public final class Class36 {
 
 	public static void method528(int i) {
-		aClass36Array635 = new Class36[i + 1];
-		aBooleanArray643 = new boolean[i + 1];
-		for (int j = 0; j < i + 1; j++) {
-			aBooleanArray643[j] = true;
-		}
-
+		aClass36Array635 = new Class36[3000][0];
 	}
 
-	public static void method529(byte abyte0[]) {
-		Stream stream = new Stream(abyte0);
-		stream.currentOffset = abyte0.length - 8;
-		int i = stream.readUnsignedWord();
-		int j = stream.readUnsignedWord();
-		int k = stream.readUnsignedWord();
-		int l = stream.readUnsignedWord();
-		int i1 = 0;
-		Stream stream_1 = new Stream(abyte0);
-		stream_1.currentOffset = i1;
-		i1 += i + 2;
-		Stream stream_2 = new Stream(abyte0);
-		stream_2.currentOffset = i1;
-		i1 += j;
-		Stream stream_3 = new Stream(abyte0);
-		stream_3.currentOffset = i1;
-		i1 += k;
-		Stream stream_4 = new Stream(abyte0);
-		stream_4.currentOffset = i1;
-		i1 += l;
-		Stream stream_5 = new Stream(abyte0);
-		stream_5.currentOffset = i1;
-		Class18 class18 = new Class18(stream_5);
-		int k1 = stream_1.readUnsignedWord();
-		int ai[] = new int[500];
-		int ai1[] = new int[500];
-		int ai2[] = new int[500];
-		int ai3[] = new int[500];
-		for (int l1 = 0; l1 < k1; l1++) {
-			int i2 = stream_1.readUnsignedWord();
-			Class36 class36 = aClass36Array635[i2] = new Class36();
-			class36.anInt636 = stream_4.readUnsignedByte();
-			class36.aClass18_637 = class18;
-			int j2 = stream_1.readUnsignedByte();
-			int k2 = -1;
-			int l2 = 0;
-			for (int i3 = 0; i3 < j2; i3++) {
-				int j3 = stream_2.readUnsignedByte();
-				if (j3 > 0) {
-					if (class18.anIntArray342[i3] != 0) {
-						for (int l3 = i3 - 1; l3 > k2; l3--) {
-							if (class18.anIntArray342[l3] != 0) {
-								continue;
+	public static void method529(int file, byte[] array) {
+		try {
+			final Stream ay = new Stream(array);
+			final Class18 b2 = new Class18(ay);
+			final int n = ay.readUnsignedWord();
+			;
+			aClass36Array635[file] = new Class36[n * 3];
+			final int[] ai = new int[500];
+			final int[] ai1 = new int[500];
+			final int[] ai2 = new int[500];
+			final int[] ai3 = new int[500];
+			for (int j = 0; j < n; ++j) {
+				final int k = ay.readUnsignedWord();
+				;
+				final Class36[] array6 = aClass36Array635[file];
+				final int n2 = k;
+				final Class36 q = new Class36();
+				array6[n2] = q;
+				final Class36 class36 = q;
+				q.aClass18_637 = b2;
+				final int f = ay.readUnsignedByte();
+				int l2 = 0;
+				int n3 = -1;
+				for (int l = 0; l < f; ++l) {
+					final int f2;
+					if ((f2 = ay.readUnsignedByte()) > 0) {
+						if (b2.anIntArray342[l] != 0) {
+							for (int n4 = l - 1; n4 > n3; --n4) {
+								if (b2.anIntArray342[n4] == 0) {
+									ai[l2] = n4;
+									ai1[l2] = 0;
+									ai3[l2] = (ai2[l2] = 0);
+									++l2;
+									break;
+								}
 							}
-							ai[l2] = l3;
-							ai1[l2] = 0;
-							ai2[l2] = 0;
-							ai3[l2] = 0;
-							l2++;
-							break;
 						}
-
-					}
-					ai[l2] = i3;
-					char c = '\0';
-					if (class18.anIntArray342[i3] == 3) {
-						c = '\200';
-					}
-					if ((j3 & 1) != 0) {
-						ai1[l2] = stream_3.method421();
-					} else {
-						ai1[l2] = c;
-					}
-					if ((j3 & 2) != 0) {
-						ai2[l2] = stream_3.method421();
-					} else {
-						ai2[l2] = c;
-					}
-					if ((j3 & 4) != 0) {
-						ai3[l2] = stream_3.method421();
-					} else {
-						ai3[l2] = c;
-					}
-					k2 = i3;
-					l2++;
-					if (class18.anIntArray342[i3] == 5) {
-						aBooleanArray643[i2] = false;
+						ai[l2] = l;
+						int n4 = 0;
+						if (b2.anIntArray342[l] == 3) {
+							n4 = 128;
+						}
+						if ((f2 & 0x1) != 0x0) {
+							ai1[l2] = ay.readSignedWord2();
+						} else {
+							ai1[l2] = n4;
+						}
+						if ((f2 & 0x2) != 0x0) {
+							ai2[l2] = ay.readSignedWord2();
+						} else {
+							ai2[l2] = n4;
+						}
+						if ((f2 & 0x4) != 0x0) {
+							ai3[l2] = ay.readSignedWord2();
+						} else {
+							ai3[l2] = n4;
+						}
+						n3 = l;
+						++l2;
 					}
 				}
+				class36.anInt638 = l2;
+				class36.anIntArray639 = new int[l2];
+				class36.anIntArray640 = new int[l2];
+				class36.anIntArray641 = new int[l2];
+				class36.anIntArray642 = new int[l2];
+				for (int k3 = 0; k3 < l2; ++k3) {
+					class36.anIntArray639[k3] = ai[k3];
+					class36.anIntArray640[k3] = ai1[k3];
+					class36.anIntArray641[k3] = ai2[k3];
+					class36.anIntArray642[k3] = ai3[k3];
+				}
 			}
-
-			class36.anInt638 = l2;
-			class36.anIntArray639 = new int[l2];
-			class36.anIntArray640 = new int[l2];
-			class36.anIntArray641 = new int[l2];
-			class36.anIntArray642 = new int[l2];
-			for (int k3 = 0; k3 < l2; k3++) {
-				class36.anIntArray639[k3] = ai[k3];
-				class36.anIntArray640[k3] = ai1[k3];
-				class36.anIntArray641[k3] = ai2[k3];
-				class36.anIntArray642[k3] = ai3[k3];
-			}
-
+		} catch (Exception ex) {
+			// ex.printStackTrace();
 		}
-
 	}
 
 	public static void nullLoader() {
 		aClass36Array635 = null;
 	}
 
-	public static Class36 method531(int j) {
-		if (aClass36Array635 == null) {
+	public static Class36 method531(int frame) {
+		try {
+
+			int file = frame >> 16;
+			int k = frame & 0xffff;
+
+			if (aClass36Array635[file] == null || aClass36Array635[file].length == 0) {
+				Game.instance.onDemandFetcher.method558(1, file);
+				return null;
+			}
+
+			return aClass36Array635[file][k];
+		} catch (Exception ex) {
+			ex.printStackTrace();
 			return null;
-		} else {
-			return aClass36Array635[j];
 		}
 	}
 
@@ -129,7 +115,7 @@ public final class Class36 {
 	private Class36() {
 	}
 
-	private static Class36[] aClass36Array635;
+	private static Class36[][] aClass36Array635;
 	public int anInt636;
 	public Class18 aClass18_637;
 	public int anInt638;
@@ -137,6 +123,4 @@ public final class Class36 {
 	public int anIntArray640[];
 	public int anIntArray641[];
 	public int anIntArray642[];
-	private static boolean[] aBooleanArray643;
-
 }

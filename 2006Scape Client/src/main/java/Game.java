@@ -33,6 +33,7 @@ import java.util.zip.CRC32;
  */
 @SuppressWarnings("serial")
 public class Game extends RSApplet {
+	public static Game instance;
 	
 	private boolean graphicsEnabled = true;
 	
@@ -506,6 +507,7 @@ public class Game extends RSApplet {
 			isMembers = true;
 			Signlink.storeid = 32;
 			Signlink.startpriv(InetAddress.getLocalHost());
+			instance = this;
 			initClientFrame(503, 765);
 		} catch (Exception exception) {
 			return;
@@ -2841,7 +2843,7 @@ public class Game extends RSApplet {
 					}
 				}
 				if (onDemandData.dataType == 1 && onDemandData.buffer != null) {
-					Class36.method529(onDemandData.buffer);
+					Class36.method529(onDemandData.ID, onDemandData.buffer);
 				}
 				if (onDemandData.dataType == 2 && onDemandData.ID == nextSong && onDemandData.buffer != null) {
 					musicData = new byte[onDemandData.buffer.length];
