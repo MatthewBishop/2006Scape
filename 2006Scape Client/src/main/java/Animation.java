@@ -33,8 +33,10 @@ public final class Animation {
 	}
 
 	private void readValues(Stream stream) {
+		int i = 0;
 		do {
-			int i = stream.readUnsignedByte();
+			int last = i;
+			i = stream.readUnsignedByte();
 			if (i == 0) {
 				break;
 			}
@@ -81,7 +83,7 @@ public final class Animation {
 			} else if (i == 12) {
 				stream.readDWord();
 			} else {
-				System.out.println("Error unrecognised seq config code: " + i);
+				System.out.println("Error unrecognised seq config code: " + i + "last code was "+last);
 			}
 		} while (true);
 		if (anInt352 == 0) {

@@ -82,7 +82,8 @@ public final class Class36 {
 				}
 			}
 		} catch (Exception ex) {
-			// ex.printStackTrace();
+			System.out.println("Bad anim: " +file);
+	//		 ex.printStackTrace();
 		}
 	}
 
