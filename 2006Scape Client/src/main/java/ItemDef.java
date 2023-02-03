@@ -142,7 +142,8 @@ public final class ItemDef {
 
 	private void setDefaults() {
 		modelID = 0;
-		name = null;
+		//name = null;
+		name = "Null";
 		description = null;
 		modifiedModelColors = null;
 		originalModelColors = null;
