@@ -3628,7 +3628,6 @@ public class Game extends RSApplet {
 		if (l == 582) {
 			NPC npc = npcArray[i1];
 			if (npc != null) {
-				doWalkTo(2, 0, 1, 0, myPlayer.smallY[0], 1, 0, npc.smallY[0], myPlayer.smallX[0], false, npc.smallX[0]);
 				crossX = super.saveClickX;
 				crossY = super.saveClickY;
 				crossType = 2;
@@ -3641,10 +3640,6 @@ public class Game extends RSApplet {
 			}
 		}
 		if (l == 234) {
-			boolean flag1 = doWalkTo(2, 0, 0, 0, myPlayer.smallY[0], 0, 0, k, myPlayer.smallX[0], false, j);
-			if (!flag1) {
-				flag1 = doWalkTo(2, 0, 1, 0, myPlayer.smallY[0], 1, 0, k, myPlayer.smallX[0], false, j);
-			}
 			crossX = super.saveClickX;
 			crossY = super.saveClickY;
 			crossType = 2;
@@ -3664,10 +3659,6 @@ public class Game extends RSApplet {
 			stream.writeWord(anInt1285);
 		}
 		if (l == 511) {
-			boolean flag2 = doWalkTo(2, 0, 0, 0, myPlayer.smallY[0], 0, 0, k, myPlayer.smallX[0], false, j);
-			if (!flag2) {
-				flag2 = doWalkTo(2, 0, 1, 0, myPlayer.smallY[0], 1, 0, k, myPlayer.smallX[0], false, j);
-			}
 			crossX = super.saveClickX;
 			crossY = super.saveClickY;
 			crossType = 2;
@@ -3710,7 +3701,6 @@ public class Game extends RSApplet {
 		if (l == 561) {
 			Player player = playerArray[i1];
 			if (player != null) {
-				doWalkTo(2, 0, 1, 0, myPlayer.smallY[0], 1, 0, player.smallY[0], myPlayer.smallX[0], false, player.smallX[0]);
 				crossX = super.saveClickX;
 				crossY = super.saveClickY;
 				crossType = 2;
@@ -3727,7 +3717,6 @@ public class Game extends RSApplet {
 		if (l == 20) {
 			NPC class30_sub2_sub4_sub1_sub1_1 = npcArray[i1];
 			if (class30_sub2_sub4_sub1_sub1_1 != null) {
-				doWalkTo(2, 0, 1, 0, myPlayer.smallY[0], 1, 0, class30_sub2_sub4_sub1_sub1_1.smallY[0], myPlayer.smallX[0], false, class30_sub2_sub4_sub1_sub1_1.smallX[0]);
 				crossX = super.saveClickX;
 				crossY = super.saveClickY;
 				crossType = 2;
@@ -3739,7 +3728,6 @@ public class Game extends RSApplet {
 		if (l == 779) {
 			Player class30_sub2_sub4_sub1_sub2_1 = playerArray[i1];
 			if (class30_sub2_sub4_sub1_sub2_1 != null) {
-				doWalkTo(2, 0, 1, 0, myPlayer.smallY[0], 1, 0, class30_sub2_sub4_sub1_sub2_1.smallY[0], myPlayer.smallX[0], false, class30_sub2_sub4_sub1_sub2_1.smallX[0]);
 				crossX = super.saveClickX;
 				crossY = super.saveClickY;
 				crossType = 2;
@@ -3853,7 +3841,6 @@ public class Game extends RSApplet {
 					if (class30_sub2_sub4_sub1_sub2_7 == null || class30_sub2_sub4_sub1_sub2_7.name == null || !class30_sub2_sub4_sub1_sub2_7.name.equalsIgnoreCase(s7)) {
 						continue;
 					}
-					doWalkTo(2, 0, 1, 0, myPlayer.smallY[0], 1, 0, class30_sub2_sub4_sub1_sub2_7.smallY[0], myPlayer.smallX[0], false, class30_sub2_sub4_sub1_sub2_7.smallX[0]);
 					if (l == 484) {
 						stream.createFrame(139);
 						stream.method431(playerIndices[j3]);
@@ -3953,7 +3940,6 @@ public class Game extends RSApplet {
 		if (l == 27) {
 			Player class30_sub2_sub4_sub1_sub2_2 = playerArray[i1];
 			if (class30_sub2_sub4_sub1_sub2_2 != null) {
-				doWalkTo(2, 0, 1, 0, myPlayer.smallY[0], 1, 0, class30_sub2_sub4_sub1_sub2_2.smallY[0], myPlayer.smallX[0], false, class30_sub2_sub4_sub1_sub2_2.smallX[0]);
 				crossX = super.saveClickX;
 				crossY = super.saveClickY;
 				crossType = 2;
@@ -3969,10 +3955,6 @@ public class Game extends RSApplet {
 			}
 		}
 		if (l == 213) {
-			boolean flag3 = doWalkTo(2, 0, 0, 0, myPlayer.smallY[0], 0, 0, k, myPlayer.smallX[0], false, j);
-			if (!flag3) {
-				flag3 = doWalkTo(2, 0, 1, 0, myPlayer.smallY[0], 1, 0, k, myPlayer.smallX[0], false, j);
-			}
 			crossX = super.saveClickX;
 			crossY = super.saveClickY;
 			crossType = 2;
@@ -4015,10 +3997,6 @@ public class Game extends RSApplet {
 			}
 		}
 		if (l == 652) {
-			boolean flag4 = doWalkTo(2, 0, 0, 0, myPlayer.smallY[0], 0, 0, k, myPlayer.smallX[0], false, j);
-			if (!flag4) {
-				flag4 = doWalkTo(2, 0, 1, 0, myPlayer.smallY[0], 1, 0, k, myPlayer.smallX[0], false, j);
-			}
 			crossX = super.saveClickX;
 			crossY = super.saveClickY;
 			crossType = 2;
@@ -4029,10 +4007,6 @@ public class Game extends RSApplet {
 			stream.method433(i1);
 		}
 		if (l == 94) {
-			boolean flag5 = doWalkTo(2, 0, 0, 0, myPlayer.smallY[0], 0, 0, k, myPlayer.smallX[0], false, j);
-			if (!flag5) {
-				flag5 = doWalkTo(2, 0, 1, 0, myPlayer.smallY[0], 1, 0, k, myPlayer.smallX[0], false, j);
-			}
 			crossX = super.saveClickX;
 			crossY = super.saveClickY;
 			crossType = 2;
@@ -4059,7 +4033,6 @@ public class Game extends RSApplet {
 		if (l == 225) {
 			NPC class30_sub2_sub4_sub1_sub1_2 = npcArray[i1];
 			if (class30_sub2_sub4_sub1_sub1_2 != null) {
-				doWalkTo(2, 0, 1, 0, myPlayer.smallY[0], 1, 0, class30_sub2_sub4_sub1_sub1_2.smallY[0], myPlayer.smallX[0], false, class30_sub2_sub4_sub1_sub1_2.smallX[0]);
 				crossX = super.saveClickX;
 				crossY = super.saveClickY;
 				crossType = 2;
@@ -4077,7 +4050,6 @@ public class Game extends RSApplet {
 		if (l == 965) {
 			NPC class30_sub2_sub4_sub1_sub1_3 = npcArray[i1];
 			if (class30_sub2_sub4_sub1_sub1_3 != null) {
-				doWalkTo(2, 0, 1, 0, myPlayer.smallY[0], 1, 0, class30_sub2_sub4_sub1_sub1_3.smallY[0], myPlayer.smallX[0], false, class30_sub2_sub4_sub1_sub1_3.smallX[0]);
 				crossX = super.saveClickX;
 				crossY = super.saveClickY;
 				crossType = 2;
@@ -4095,7 +4067,6 @@ public class Game extends RSApplet {
 		if (l == 413) {
 			NPC class30_sub2_sub4_sub1_sub1_4 = npcArray[i1];
 			if (class30_sub2_sub4_sub1_sub1_4 != null) {
-				doWalkTo(2, 0, 1, 0, myPlayer.smallY[0], 1, 0, class30_sub2_sub4_sub1_sub1_4.smallY[0], myPlayer.smallX[0], false, class30_sub2_sub4_sub1_sub1_4.smallX[0]);
 				crossX = super.saveClickX;
 				crossY = super.saveClickY;
 				crossType = 2;
@@ -4136,7 +4107,6 @@ public class Game extends RSApplet {
 		if (l == 412) {
 			NPC class30_sub2_sub4_sub1_sub1_6 = npcArray[i1];
 			if (class30_sub2_sub4_sub1_sub1_6 != null) {
-				doWalkTo(2, 0, 1, 0, myPlayer.smallY[0], 1, 0, class30_sub2_sub4_sub1_sub1_6.smallY[0], myPlayer.smallX[0], false, class30_sub2_sub4_sub1_sub1_6.smallX[0]);
 				crossX = super.saveClickX;
 				crossY = super.saveClickY;
 				crossType = 2;
@@ -4148,7 +4118,6 @@ public class Game extends RSApplet {
 		if (l == 365) {
 			Player class30_sub2_sub4_sub1_sub2_3 = playerArray[i1];
 			if (class30_sub2_sub4_sub1_sub2_3 != null) {
-				doWalkTo(2, 0, 1, 0, myPlayer.smallY[0], 1, 0, class30_sub2_sub4_sub1_sub2_3.smallY[0], myPlayer.smallX[0], false, class30_sub2_sub4_sub1_sub2_3.smallX[0]);
 				crossX = super.saveClickX;
 				crossY = super.saveClickY;
 				crossType = 2;
@@ -4161,7 +4130,6 @@ public class Game extends RSApplet {
 		if (l == 729) {
 			Player class30_sub2_sub4_sub1_sub2_4 = playerArray[i1];
 			if (class30_sub2_sub4_sub1_sub2_4 != null) {
-				doWalkTo(2, 0, 1, 0, myPlayer.smallY[0], 1, 0, class30_sub2_sub4_sub1_sub2_4.smallY[0], myPlayer.smallX[0], false, class30_sub2_sub4_sub1_sub2_4.smallX[0]);
 				crossX = super.saveClickX;
 				crossY = super.saveClickY;
 				crossType = 2;
@@ -4173,7 +4141,6 @@ public class Game extends RSApplet {
 		if (l == 577) {
 			Player class30_sub2_sub4_sub1_sub2_5 = playerArray[i1];
 			if (class30_sub2_sub4_sub1_sub2_5 != null) {
-				doWalkTo(2, 0, 1, 0, myPlayer.smallY[0], 1, 0, class30_sub2_sub4_sub1_sub2_5.smallY[0], myPlayer.smallX[0], false, class30_sub2_sub4_sub1_sub2_5.smallX[0]);
 				crossX = super.saveClickX;
 				crossY = super.saveClickY;
 				crossType = 2;
@@ -4190,10 +4157,6 @@ public class Game extends RSApplet {
 			stream.method431(i1 >> 14 & 0x7fff);
 		}
 		if (l == 567) {
-			boolean flag6 = doWalkTo(2, 0, 0, 0, myPlayer.smallY[0], 0, 0, k, myPlayer.smallX[0], false, j);
-			if (!flag6) {
-				flag6 = doWalkTo(2, 0, 1, 0, myPlayer.smallY[0], 1, 0, k, myPlayer.smallX[0], false, j);
-			}
 			crossX = super.saveClickX;
 			crossY = super.saveClickY;
 			crossType = 2;
@@ -4268,7 +4231,6 @@ public class Game extends RSApplet {
 		if (l == 491) {
 			Player class30_sub2_sub4_sub1_sub2_6 = playerArray[i1];
 			if (class30_sub2_sub4_sub1_sub2_6 != null) {
-				doWalkTo(2, 0, 1, 0, myPlayer.smallY[0], 1, 0, class30_sub2_sub4_sub1_sub2_6.smallY[0], myPlayer.smallX[0], false, class30_sub2_sub4_sub1_sub2_6.smallX[0]);
 				crossX = super.saveClickX;
 				crossY = super.saveClickY;
 				crossType = 2;
@@ -4326,7 +4288,6 @@ public class Game extends RSApplet {
 		if (l == 478) {
 			NPC class30_sub2_sub4_sub1_sub1_7 = npcArray[i1];
 			if (class30_sub2_sub4_sub1_sub1_7 != null) {
-				doWalkTo(2, 0, 1, 0, myPlayer.smallY[0], 1, 0, class30_sub2_sub4_sub1_sub1_7.smallY[0], myPlayer.smallX[0], false, class30_sub2_sub4_sub1_sub1_7.smallX[0]);
 				crossX = super.saveClickX;
 				crossY = super.saveClickY;
 				crossType = 2;
@@ -4419,10 +4380,6 @@ public class Game extends RSApplet {
 			pushMessage(s10, 0, "");
 		}
 		if (l == 244) {
-			boolean flag7 = doWalkTo(2, 0, 0, 0, myPlayer.smallY[0], 0, 0, k, myPlayer.smallX[0], false, j);
-			if (!flag7) {
-				flag7 = doWalkTo(2, 0, 1, 0, myPlayer.smallY[0], 1, 0, k, myPlayer.smallX[0], false, j);
-			}
 			crossX = super.saveClickX;
 			crossY = super.saveClickY;
 			crossType = 2;
@@ -4687,10 +4644,6 @@ public class Game extends RSApplet {
 		byteGroundArray = null;
 		worldController = null;
 		aClass11Array1230 = null;
-		anIntArrayArray901 = null;
-		anIntArrayArray825 = null;
-		bigX = null;
-		bigY = null;
 		aByteArray912 = null;
 		aRSImageProducer_1163 = null;
 		aRSImageProducer_1164 = null;
@@ -6095,7 +6048,6 @@ public class Game extends RSApplet {
 				anInt1175 = 0;
 				anInt1134 = 0;
 				anInt986 = 0;
-				anInt1288 = 0;
 				anInt924 = 0;
 				anInt1188 = 0;
 				anInt1155 = 0;
@@ -6268,197 +6220,21 @@ public class Game extends RSApplet {
 	}
 
 	public boolean doWalkTo(int i, int j, int k, int i1, int j1, int k1, int l1, int i2, int j2, boolean flag, int k2) {
-		byte byte0 = 104;
-		byte byte1 = 104;
-		for (int l2 = 0; l2 < byte0; l2++) {
-			for (int i3 = 0; i3 < byte1; i3++) {
-				anIntArrayArray901[l2][i3] = 0;
-				anIntArrayArray825[l2][i3] = 0x5f5e0ff;
-			}
-
+		if (i == 0) {
+			stream.createFrame(164);
 		}
-		int j3 = j2;
-		int k3 = j1;
-		anIntArrayArray901[j2][j1] = 99;
-		anIntArrayArray825[j2][j1] = 0;
-		int l3 = 0;
-		int i4 = 0;
-		bigX[l3] = j2;
-		bigY[l3++] = j1;
-		boolean flag1 = false;
-		int j4 = bigX.length;
-		int ai[][] = aClass11Array1230[plane].anIntArrayArray294;
-		while (i4 != l3) {
-			j3 = bigX[i4];
-			k3 = bigY[i4];
-			i4 = (i4 + 1) % j4;
-			if (j3 == k2 && k3 == i2) {
-				flag1 = true;
-				break;
-			}
-			if (i1 != 0) {
-				if ((i1 < 5 || i1 == 10) && aClass11Array1230[plane].method219(k2, j3, k3, j, i1 - 1, i2)) {
-					flag1 = true;
-					break;
-				}
-				if (i1 < 10 && aClass11Array1230[plane].method220(k2, i2, k3, i1 - 1, j, j3)) {
-					flag1 = true;
-					break;
-				}
-			}
-			if (k1 != 0 && k != 0 && aClass11Array1230[plane].method221(i2, k2, j3, k, l1, k1, k3)) {
-				flag1 = true;
-				break;
-			}
-			int l4 = anIntArrayArray825[j3][k3] + 1;
-			if (j3 > 0 && anIntArrayArray901[j3 - 1][k3] == 0 && (ai[j3 - 1][k3] & 0x1280108) == 0) {
-				bigX[l3] = j3 - 1;
-				bigY[l3] = k3;
-				l3 = (l3 + 1) % j4;
-				anIntArrayArray901[j3 - 1][k3] = 2;
-				anIntArrayArray825[j3 - 1][k3] = l4;
-			}
-			if (j3 < byte0 - 1 && anIntArrayArray901[j3 + 1][k3] == 0 && (ai[j3 + 1][k3] & 0x1280180) == 0) {
-				bigX[l3] = j3 + 1;
-				bigY[l3] = k3;
-				l3 = (l3 + 1) % j4;
-				anIntArrayArray901[j3 + 1][k3] = 8;
-				anIntArrayArray825[j3 + 1][k3] = l4;
-			}
-			if (k3 > 0 && anIntArrayArray901[j3][k3 - 1] == 0 && (ai[j3][k3 - 1] & 0x1280102) == 0) {
-				bigX[l3] = j3;
-				bigY[l3] = k3 - 1;
-				l3 = (l3 + 1) % j4;
-				anIntArrayArray901[j3][k3 - 1] = 1;
-				anIntArrayArray825[j3][k3 - 1] = l4;
-			}
-			if (k3 < byte1 - 1 && anIntArrayArray901[j3][k3 + 1] == 0 && (ai[j3][k3 + 1] & 0x1280120) == 0) {
-				bigX[l3] = j3;
-				bigY[l3] = k3 + 1;
-				l3 = (l3 + 1) % j4;
-				anIntArrayArray901[j3][k3 + 1] = 4;
-				anIntArrayArray825[j3][k3 + 1] = l4;
-			}
-			if (j3 > 0 && k3 > 0 && anIntArrayArray901[j3 - 1][k3 - 1] == 0 && (ai[j3 - 1][k3 - 1] & 0x128010e) == 0 && (ai[j3 - 1][k3] & 0x1280108) == 0 && (ai[j3][k3 - 1] & 0x1280102) == 0) {
-				bigX[l3] = j3 - 1;
-				bigY[l3] = k3 - 1;
-				l3 = (l3 + 1) % j4;
-				anIntArrayArray901[j3 - 1][k3 - 1] = 3;
-				anIntArrayArray825[j3 - 1][k3 - 1] = l4;
-			}
-			if (j3 < byte0 - 1 && k3 > 0 && anIntArrayArray901[j3 + 1][k3 - 1] == 0 && (ai[j3 + 1][k3 - 1] & 0x1280183) == 0 && (ai[j3 + 1][k3] & 0x1280180) == 0 && (ai[j3][k3 - 1] & 0x1280102) == 0) {
-				bigX[l3] = j3 + 1;
-				bigY[l3] = k3 - 1;
-				l3 = (l3 + 1) % j4;
-				anIntArrayArray901[j3 + 1][k3 - 1] = 9;
-				anIntArrayArray825[j3 + 1][k3 - 1] = l4;
-			}
-			if (j3 > 0 && k3 < byte1 - 1 && anIntArrayArray901[j3 - 1][k3 + 1] == 0 && (ai[j3 - 1][k3 + 1] & 0x1280138) == 0 && (ai[j3 - 1][k3] & 0x1280108) == 0 && (ai[j3][k3 + 1] & 0x1280120) == 0) {
-				bigX[l3] = j3 - 1;
-				bigY[l3] = k3 + 1;
-				l3 = (l3 + 1) % j4;
-				anIntArrayArray901[j3 - 1][k3 + 1] = 6;
-				anIntArrayArray825[j3 - 1][k3 + 1] = l4;
-			}
-			if (j3 < byte0 - 1 && k3 < byte1 - 1 && anIntArrayArray901[j3 + 1][k3 + 1] == 0 && (ai[j3 + 1][k3 + 1] & 0x12801e0) == 0 && (ai[j3 + 1][k3] & 0x1280180) == 0 && (ai[j3][k3 + 1] & 0x1280120) == 0) {
-				bigX[l3] = j3 + 1;
-				bigY[l3] = k3 + 1;
-				l3 = (l3 + 1) % j4;
-				anIntArrayArray901[j3 + 1][k3 + 1] = 12;
-				anIntArrayArray825[j3 + 1][k3 + 1] = l4;
-			}
+		if (i == 1) {
+			stream.createFrame(248);
 		}
-		anInt1264 = 0;
-		if (!flag1) {
-			if (flag) {
-				int i5 = 100;
-				for (int k5 = 1; k5 < 2; k5++) {
-					for (int i6 = k2 - k5; i6 <= k2 + k5; i6++) {
-						for (int l6 = i2 - k5; l6 <= i2 + k5; l6++) {
-							if (i6 >= 0 && l6 >= 0 && i6 < 104 && l6 < 104 && anIntArrayArray825[i6][l6] < i5) {
-								i5 = anIntArrayArray825[i6][l6];
-								j3 = i6;
-								k3 = l6;
-								anInt1264 = 1;
-								flag1 = true;
-							}
-						}
-
-					}
-
-					if (flag1) {
-						break;
-					}
-				}
-
-			}
-			if (!flag1) {
-				return false;
-			}
+		if (i == 2) {
+			stream.createFrame(98);
 		}
-		i4 = 0;
-		bigX[i4] = j3;
-		bigY[i4++] = k3;
-		int l5;
-		for (int j5 = l5 = anIntArrayArray901[j3][k3]; j3 != j2 || k3 != j1; j5 = anIntArrayArray901[j3][k3]) {
-			if (j5 != l5) {
-				l5 = j5;
-				bigX[i4] = j3;
-				bigY[i4++] = k3;
-			}
-			if ((j5 & 2) != 0) {
-				j3++;
-			} else if ((j5 & 8) != 0) {
-				j3--;
-			}
-			if ((j5 & 1) != 0) {
-				k3++;
-			} else if ((j5 & 4) != 0) {
-				k3--;
-			}
-		}
-		// if(cancelWalk) { return i4 > 0; }
-
-		if (i4 > 0) {
-			int k4 = i4;
-			if (k4 > 25) {
-				k4 = 25;
-			}
-			i4--;
-			int k6 = bigX[i4];
-			int i7 = bigY[i4];
-			anInt1288 += k4;
-			if (anInt1288 >= 92) {
-				stream.createFrame(36);
-				stream.writeDWord(0);
-				anInt1288 = 0;
-			}
-			if (i == 0) {
-				stream.createFrame(164);
-				stream.writeWordBigEndian(k4 + k4 + 3);
-			}
-			if (i == 1) {
-				stream.createFrame(248);
-				stream.writeWordBigEndian(k4 + k4 + 3 + 14);
-			}
-			if (i == 2) {
-				stream.createFrame(98);
-				stream.writeWordBigEndian(k4 + k4 + 3);
-			}
-			stream.method433(k6 + baseX);
-			destX = bigX[0];
-			destY = bigY[0];
-			for (int j7 = 1; j7 < k4; j7++) {
-				i4--;
-				stream.writeWordBigEndian(bigX[i4] - k6);
-				stream.writeWordBigEndian(bigY[i4] - i7);
-			}
-
-			stream.method431(i7 + baseY);
-			stream.method424(super.keyArray[5] != 1 ? 0 : 1);
-			return true;
-		}
-		return i != 1;
+		stream.method433(k2 + baseX);
+		destX = k2;
+		destY = i2;
+		stream.method431(i2 + baseY);
+		stream.method424(super.keyArray[5] != 1 ? 0 : 1);
+		return true;
 	}
 	
 	static final int method77(int i, int i_1_) {
@@ -7349,20 +7125,7 @@ public class Game extends RSApplet {
 				int l1 = j * j1 - i * i1 >> 11;
 				int i2 = myPlayer.x + k1 >> 7;
 				int j2 = myPlayer.y - l1 >> 7;
-				boolean flag1 = doWalkTo(1, 0, 0, 0, myPlayer.smallY[0], 0, 0, j2, myPlayer.smallX[0], true, i2);
-				if (flag1) {
-					stream.writeWordBigEndian(i);
-					stream.writeWordBigEndian(j);
-					stream.writeWord(minimapInt1);
-					stream.writeWordBigEndian(57);
-					stream.writeWordBigEndian(minimapInt2);
-					stream.writeWordBigEndian(minimapInt3);
-					stream.writeWordBigEndian(89);
-					stream.writeWord(myPlayer.x);
-					stream.writeWord(myPlayer.y);
-					stream.writeWordBigEndian(anInt1264);
-					stream.writeWordBigEndian(63);
-				}
+				doWalkTo(1, 0, 0, 0, myPlayer.smallY[0], 0, 0, j2, myPlayer.smallX[0], true, i2);
 			}
 			anInt1117++;
 			if (anInt1117 > 1151) {
@@ -11907,7 +11670,6 @@ public class Game extends RSApplet {
 			System.out.println("Please downgrade to Java 8 to avoid problems! (AdoptOpenJDK.net)");
 		}
 		server = ClientSettings.SERVER_IP;
-		anIntArrayArray825 = new int[104][104];
 		friendsNodeIDs = new int[200];
 		groundArray = new NodeList[4][104][104];
 		aBoolean831 = false;
@@ -11935,7 +11697,6 @@ public class Game extends RSApplet {
 		anIntArray894 = new int[maxPlayers];
 		aStreamArray895s = new Stream[maxPlayers];
 		anInt897 = 1;
-		anIntArrayArray901 = new int[104][104];
 		anInt902 = 0x766654;
 		aByteArray912 = new byte[16384];
 		currentStats = new int[Skills.skillsCount];
@@ -12053,8 +11814,6 @@ public class Game extends RSApplet {
 		loginMessage2 = "";
 		backDialogID = -1;
 		anInt1279 = 2;
-		bigX = new int[4000];
-		bigY = new int[4000];
 		anInt1289 = -1;
 		aCRC32_930 = new CRC32();
 	}
@@ -12062,7 +11821,6 @@ public class Game extends RSApplet {
 	public static String server;
 	public int ignoreCount;
 	public long aLong824;
-	public int[][] anIntArrayArray825;
 	public int[] friendsNodeIDs;
 	public NodeList[][][] groundArray;
 	public int[] anIntArray828;
@@ -12134,7 +11892,6 @@ public class Game extends RSApplet {
 	public int anInt897;
 	public int friendsCount;
 	public int anInt900;
-	public int[][] anIntArrayArray901;
 	public final int anInt902;
 	public RSImageProducer backLeftIP1;
 	public RSImageProducer backLeftIP2;
@@ -12462,7 +12219,6 @@ public class Game extends RSApplet {
 	public int destX;
 	public int destY;
 	public Sprite aClass30_Sub2_Sub1_Sub1_1263;
-	public int anInt1264;
 	public int anInt1265;
 	public String loginMessage1;
 	public String loginMessage2;
@@ -12475,14 +12231,11 @@ public class Game extends RSApplet {
 	public int backDialogID;
 	public int anInt1278;
 	public int anInt1279;
-	public int[] bigX;
-	public int[] bigY;
 	public int itemSelected;
 	public int anInt1283;
 	public int anInt1284;
 	public int anInt1285;
 	public String selectedItemName;
-	public static int anInt1288;
 	public int anInt1289;
 	public static int tiara;
 	public static int anInt1290;

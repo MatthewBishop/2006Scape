@@ -13,6 +13,7 @@ import com.rs2.game.players.Player;
 import com.rs2.game.players.PlayerHandler;
 import com.rs2.net.Packet;
 import com.rs2.net.packets.PacketType;
+import com.rs2.world.clip.PathFinder;
 
 /**
  * Walking packet
@@ -171,10 +172,7 @@ public class Walking implements PacketType {
 		}
 
 		player.endCurrentTask();
-		int packetSize = packet.getLength();
-		if (packet.getOpcode() == 248) {
-			packetSize -= 14;
-		}
+		
 //
 //		if (player.clickToTele) {
 //			player.newWalkCmdSteps = (packetSize - 5) / 2;
@@ -222,49 +220,24 @@ public class Walking implements PacketType {
 //		}
 //	}
 //}
-		player.newWalkCmdSteps = (packetSize - 5) / 2;
-		if (++player.newWalkCmdSteps > player.walkingQueueSize) {
-			player.newWalkCmdSteps = 0;
-			return;
-		}
 
-		player.getNewWalkCmdX()[0] = player.getNewWalkCmdY()[0] = 0;
 
 		int firstStepX, firstStepY;
 		int realX = 0;
 		int realY = 0;
 
-		if (player.clickToTele) {
-			firstStepX = packet.readSignedWordBigEndianA();
-		} else {
 			realX = packet.readSignedWordBigEndianA();
 			firstStepX = realX - player.getMapRegionX() * 8;
-		}
-		for (int i = 1; i < player.newWalkCmdSteps; i++) {
-			player.getNewWalkCmdX()[i] = packet.readSignedByte();
-			player.getNewWalkCmdY()[i] = packet.readSignedByte();
-		}
 
-		if (player.clickToTele) {
-			firstStepY = packet.readSignedWordBigEndian();
-		} else {
 			realY = packet.readSignedWordBigEndian();
 			firstStepY = realY - player.getMapRegionY() * 8;
-		}
 
-		if (!player.clickToTele) {
 			if (player.distanceToPoint(realX, realY) > 30) {
 				return;
 			}
-		}
-
+			System.out.println("walking to : "+realX);
+        PathFinder.getPathFinder().findRoute(player, realX, realY, false, 1, 1);
 		player.setNewWalkCmdIsRunning(packet.readSignedByteC() == 1 && player.playerEnergy > 0);
-		for (int i1 = 0; i1 < player.newWalkCmdSteps; i1++) {
-			if (player.clickToTele)
-				player.getPlayerAssistant().movePlayer(player.getNewWalkCmdX()[i1] + firstStepX, player.getNewWalkCmdY()[i1] + firstStepY, player.heightLevel);
-			player.getNewWalkCmdX()[i1] += firstStepX;
-			player.getNewWalkCmdY()[i1] += firstStepY;
-		}
 	}
 
 }
