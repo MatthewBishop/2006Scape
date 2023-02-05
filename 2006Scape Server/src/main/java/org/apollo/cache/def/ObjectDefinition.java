@@ -78,7 +78,7 @@ public final class ObjectDefinition {
 	/**
 	 * Denotes whether this object has actions associated with it or not.
 	 */
-	private boolean interactive;
+	private boolean interactive = false;
 
 	/**
 	 * Denotes whether or not this object obstructs the ground.
@@ -109,6 +109,16 @@ public final class ObjectDefinition {
 	 * This object's width.
 	 */
 	private int width = 1;
+
+	public boolean clipped = true;
+
+	public boolean isClipped() {
+		return clipped;
+	}
+
+	public void setClipped(boolean clipped) {
+		this.clipped = clipped;
+	}
 
 	/**
 	 * Creates a new object definition.

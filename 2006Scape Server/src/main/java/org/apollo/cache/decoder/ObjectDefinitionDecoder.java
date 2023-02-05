@@ -66,16 +66,38 @@ public final class ObjectDefinitionDecoder implements Runnable {
 	 */
 	private ObjectDefinition decode(int id, ByteBuffer data) {
 		ObjectDefinition definition = new ObjectDefinition(id);
+		int[] modelId = null;
+		int[] modelType = null;
+		int flag = -1;
+		boolean actions = false;
+		
 		while (true) {
 			int opcode = data.get() & 0xFF;
 
 			if (opcode == 0) {
+				if (flag == -1) {
+					definition.setInteractive(modelId != null && (modelType == null || modelType[0] == 10));
+					if (actions) {
+						definition.setInteractive(true);
+					}
+				}
 				return definition;
 			} else if (opcode == 1) {
 				int amount = data.get() & 0xFF;
-				for (int i = 0; i < amount; i++) {
-					data.getShort();
-					data.get();
+				if (amount > 0) {
+					if (modelId == null) {
+						modelType = new int[amount];
+						modelId = new int[amount];
+						for (int i = 0; i < amount; i++) {
+							modelId[i] = data.getShort() & 0xFFFF;
+							modelType[i] = data.get() & 0xFF;
+						}
+					} else {
+						for (int i = 0; i < amount; i++) {
+							data.getShort();
+							data.get();
+						}
+					}
 				}
 			} else if (opcode == 2) {
 				definition.setName(BufferUtil.readString(data));
@@ -101,13 +123,15 @@ public final class ObjectDefinitionDecoder implements Runnable {
 			} else if (opcode == 28 || opcode == 29) {
 				data.get();
 			} else if (opcode >= 30 && opcode < 39) {
-				String[] actions = definition.getMenuActions();
-				if (actions == null) {
-					actions = new String[10];
+				actions = true;
+				String[] actionsStrings = definition.getMenuActions();
+				if (actionsStrings == null) {
+					actionsStrings = new String[10];
 				}
 				String action = BufferUtil.readString(data);
-				actions[opcode - 30] = action;
-				definition.setMenuActions(actions);
+				actionsStrings[opcode - 30] = action;
+				definition.setMenuActions(actionsStrings);
+				definition.setInteractive(true);
 			} else if (opcode == 39) {
 				data.get();
 			} else if (opcode == 40) {
@@ -116,6 +140,8 @@ public final class ObjectDefinitionDecoder implements Runnable {
 					data.getShort();
 					data.getShort();
 				}
+			} else if (opcode == 64) {
+				definition.setClipped(false);
 			} else if (opcode == 60 || opcode >= 65 && opcode <= 68) {
 				data.getShort();
 			} else if (opcode == 69) {

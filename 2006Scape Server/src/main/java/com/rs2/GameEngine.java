@@ -44,7 +44,6 @@ import com.rs2.world.GlobalDropsHandler;
 import com.rs2.world.ItemHandler;
 import com.rs2.world.ObjectHandler;
 import com.rs2.world.ObjectManager;
-import com.rs2.world.clip.ObjectDefinition;
 import com.rs2.world.clip.RegionFactory;
 
 import io.netty.util.ResourceLeakDetector;
