@@ -14,20 +14,20 @@ public class Region {
 	private final int[][][] projectileClips = new int[4][][];
 	private boolean members = false;
 
-	public Region(int id, boolean members) {
+	Region(int id, boolean members) {
 		this.id = id;
 		this.members = members;
 	}
 
-	public int id() {
+	private int id() {
 		return id;
 	}
 
-	public boolean members() {
+	private boolean members() {
 		return members;
 	}
 
-	public static boolean isMembers(int x, int y) {
+	private static boolean isMembers(int x, int y) {
 		if (x >= 3272 && x <= 3320 && y >= 2752 && y <= 2809) {
 			return false;
 		}
@@ -44,7 +44,7 @@ public class Region {
 	 * @param y coordinate Y
 	 * @return Region object
 	 */
-	public static Region getRegion(int x, int y) {
+	private static Region getRegion(int x, int y) {
 	    int regionId = getRegionId(x,y);
 	    for (Region region : RegionFactory.getRegions()) {
 	        if (region.id() == regionId) {
@@ -61,7 +61,7 @@ public class Region {
 	 * @param y coordinate Y
 	 * @return ID of target region
 	 */
-	public static int getRegionId(int x, int y) {
+	private static int getRegionId(int x, int y) {
 	    int regionX = x >> 3;
 	    int regionY = y >> 3;
 	    int regionId = (regionX / 8 << 8) + regionY / 8;
@@ -121,7 +121,7 @@ public class Region {
 	 * @param y
 	 * @param height
 	 */
-	public void removeClipping(int x, int y, int height) {
+	private void removeClipping(int x, int y, int height) {
 		for (Region r : RegionFactory.getRegions()) {
 			if (r.id() == getRegionId(x,y)) {
 				r.removeClip(x, y, height);
@@ -139,7 +139,7 @@ public class Region {
 		projectileClips[height][x - regionAbsX][y - regionAbsY] |= shift;
 	}
 
-	public static boolean canMove(int x, int y, int z, int direction) {
+	static boolean canMove(int x, int y, int z, int direction) {
 		if (direction == 6) {
 			if ((Region.getClipping(x, y - 1, z) & 0x1280102) == 0) {
 				return true;
@@ -187,7 +187,7 @@ public class Region {
 		return false;
 	}
 
-	public static boolean canShoot(int x, int y, int z, int direction) {
+	static boolean canShoot(int x, int y, int z, int direction) {
 		if (direction == 0) {
 			return !projectileBlockedNorthWest(x, y, z) && !projectileBlockedNorth(x, y, z)
 					&& !projectileBlockedWest(x, y, z);
@@ -212,110 +212,36 @@ public class Region {
 		return false;
 	}
 
-	public static boolean projectileBlockedNorth(int x, int y, int z) {
+	private static boolean projectileBlockedNorth(int x, int y, int z) {
 		return (getProjectileClipping(x, y + 1, z) & 0x1280120) != 0;
 	}
 
-	public static boolean projectileBlockedEast(int x, int y, int z) {
+	private static boolean projectileBlockedEast(int x, int y, int z) {
 		return (getProjectileClipping(x + 1, y, z) & 0x1280180) != 0;
 	}
 
-	public static boolean projectileBlockedSouth(int x, int y, int z) {
+	private static boolean projectileBlockedSouth(int x, int y, int z) {
 		return (getProjectileClipping(x, y - 1, z) & 0x1280102) != 0;
 	}
 
-	public static boolean projectileBlockedWest(int x, int y, int z) {
+	private static boolean projectileBlockedWest(int x, int y, int z) {
 		return (getProjectileClipping(x - 1, y, z) & 0x1280108) != 0;
 	}
 
-	public static boolean projectileBlockedNorthEast(int x, int y, int z) {
+	private static boolean projectileBlockedNorthEast(int x, int y, int z) {
 		return (getProjectileClipping(x + 1, y + 1, z) & 0x12801e0) != 0;
 	}
 
-	public static boolean projectileBlockedNorthWest(int x, int y, int z) {
+	private static boolean projectileBlockedNorthWest(int x, int y, int z) {
 		return (getProjectileClipping(x - 1, y + 1, z) & 0x1280138) != 0;
 	}
 
-	public static boolean projectileBlockedSouthEast(int x, int y, int z) {
+	private static boolean projectileBlockedSouthEast(int x, int y, int z) {
 		return (getProjectileClipping(x + 1, y - 1, z) & 0x1280183) != 0;
 	}
 
-	public static boolean projectileBlockedSouthWest(int x, int y, int z) {
+	private static boolean projectileBlockedSouthWest(int x, int y, int z) {
 		return (getProjectileClipping(x - 1, y - 1, z) & 0x128010e) != 0;
-	}
-
-	public static boolean canMove(int startX, int startY, int endX, int endY, int height, int xLength, int yLength) {
-		int diffX = endX - startX;
-		int diffY = endY - startY;
-		int max = Math.max(Math.abs(diffX), Math.abs(diffY));
-		for (int ii = 0; ii < max; ii++) {
-			int currentX = endX - diffX;
-			int currentY = endY - diffY;
-			for (int i = 0; i < xLength; i++) {
-				for (int i2 = 0; i2 < yLength; i2++)
-					if (diffX < 0 && diffY < 0) {
-						if ((getClipping((currentX + i) - 1,
-								(currentY + i2) - 1, height) & 0x128010e) != 0
-								|| (getClipping((currentX + i) - 1, currentY
-										+ i2, height) & 0x1280108) != 0
-								|| (getClipping(currentX + i,
-										(currentY + i2) - 1, height) & 0x1280102) != 0)
-							return false;
-					} else if (diffX > 0 && diffY > 0) {
-						if ((getClipping(currentX + i + 1, currentY + i2 + 1,
-								height) & 0x12801e0) != 0
-								|| (getClipping(currentX + i + 1,
-										currentY + i2, height) & 0x1280180) != 0
-								|| (getClipping(currentX + i,
-										currentY + i2 + 1, height) & 0x1280120) != 0)
-							return false;
-					} else if (diffX < 0 && diffY > 0) {
-						if ((getClipping((currentX + i) - 1, currentY + i2 + 1,
-								height) & 0x1280138) != 0
-								|| (getClipping((currentX + i) - 1, currentY
-										+ i2, height) & 0x1280108) != 0
-								|| (getClipping(currentX + i,
-										currentY + i2 + 1, height) & 0x1280120) != 0)
-							return false;
-					} else if (diffX > 0 && diffY < 0) {
-						if ((getClipping(currentX + i + 1, (currentY + i2) - 1,
-								height) & 0x1280183) != 0
-								|| (getClipping(currentX + i + 1,
-										currentY + i2, height) & 0x1280180) != 0
-								|| (getClipping(currentX + i,
-										(currentY + i2) - 1, height) & 0x1280102) != 0)
-							return false;
-					} else if (diffX > 0 && diffY == 0) {
-						if ((getClipping(currentX + i + 1, currentY + i2,
-								height) & 0x1280180) != 0)
-							return false;
-					} else if (diffX < 0 && diffY == 0) {
-						if ((getClipping((currentX + i) - 1, currentY + i2,
-								height) & 0x1280108) != 0)
-							return false;
-					} else if (diffX == 0 && diffY > 0) {
-						if ((getClipping(currentX + i, currentY + i2 + 1,
-								height) & 0x1280120) != 0)
-							return false;
-					} else if (diffX == 0
-							&& diffY < 0
-							&& (getClipping(currentX + i, (currentY + i2) - 1,
-									height) & 0x1280102) != 0)
-						return false;
-
-			}
-
-			if (diffX < 0)
-				diffX++;
-			else if (diffX > 0)
-				diffX--;
-			if (diffY < 0)
-				diffY++;
-			else if (diffY > 0)
-				diffY--;
-		}
-
-		return true;
 	}
 
 	private int getClip(int x, int y, int height) {
@@ -661,7 +587,7 @@ public class Region {
 		return 0;
 	}
 
-	public static int getProjectileClipping(int x, int y, int height) {
+	private static int getProjectileClipping(int x, int y, int height) {
 		if (height > 3) {
 			height = 0;
 		}

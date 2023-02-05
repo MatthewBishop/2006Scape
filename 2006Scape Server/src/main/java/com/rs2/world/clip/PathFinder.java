@@ -206,11 +206,11 @@ public class PathFinder {
 		}
 	}
 
-	public int getRegionCoordinate(int x) {
+	private int getRegionCoordinate(int x) {
 		return (x >> 3) - 6;
 	}
 
-	public int getLocalCoordinate(int x) {
+	private int getLocalCoordinate(int x) {
 		return x - 8 * getRegionCoordinate(x);
 	}
 
@@ -407,7 +407,7 @@ public class PathFinder {
 				|| Region.canShoot(x, y, z, dir) && Region.canShoot(px, py, z, dir2);
 	}
 
-	public int localize(int x, int mapRegion) {
+	private int localize(int x, int mapRegion) {
 		return x - 8 * mapRegion;
 	}
 
