@@ -3388,32 +3388,6 @@ public class Game extends RSApplet {
 	}
 
 	public boolean method66(int i, int j, int k) {
-		int i1 = i >> 14 & 0x7fff;
-		int j1 = worldController.method304(plane, k, j, i);
-		if (j1 == -1) {
-			return false;
-		}
-		int k1 = j1 & 0x1f;
-		int l1 = j1 >> 6 & 3;
-		if (k1 == 10 || k1 == 11 || k1 == 22) {
-			ObjectDef class46 = ObjectDef.forID(i1);
-			int i2;
-			int j2;
-			if (l1 == 0 || l1 == 2) {
-				i2 = class46.anInt744;
-				j2 = class46.anInt761;
-			} else {
-				i2 = class46.anInt761;
-				j2 = class46.anInt744;
-			}
-			int k2 = class46.anInt768;
-			if (l1 != 0) {
-				k2 = (k2 << l1 & 0xf) + (k2 >> 4 - l1);
-			}
-			doWalkTo(2, 0, j2, 0, myPlayer.smallY[0], i2, k2, j, myPlayer.smallX[0], false, k);
-		} else {
-			doWalkTo(2, l1, 0, k1 + 1, myPlayer.smallY[0], 0, 0, j, myPlayer.smallX[0], false, k);
-		}
 		crossX = super.saveClickX;
 		crossY = super.saveClickY;
 		crossType = 2;
