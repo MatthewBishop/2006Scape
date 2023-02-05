@@ -71,7 +71,7 @@ public class GameEngine {
 	private static void startMinutesCounter() {
 		try {
 			minuteFile = new BufferedReader(new FileReader(
-					"./data/minutes.log"));
+					"./data/logs/minutes.log"));
 			minutesCounter = Long.parseLong(minuteFile.readLine());
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -82,7 +82,7 @@ public class GameEngine {
 	private static void setMinutesCounter(long minutesCounter) {
 		try {
 			BufferedWriter minuteCounter = new BufferedWriter(new FileWriter(
-					"./data/minutes.log"));
+					"./data/logs/minutes.log"));
 			minuteCounter.write(Long.toString(minutesCounter));
 			minuteCounter.close();
 		} catch (IOException e) {
