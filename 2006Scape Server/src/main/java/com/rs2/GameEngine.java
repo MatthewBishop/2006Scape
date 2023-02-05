@@ -20,7 +20,6 @@ import org.apollo.cache.IndexedFileSystem;
 import org.apollo.cache.decoder.ItemDefinitionDecoder;
 import org.apollo.cache.decoder.ObjectDefinitionDecoder;
 import org.apollo.cache.def.ObjectDefinition;
-import org.apollo.jagcached.Constants;
 import org.apollo.jagcached.FileServer;
 
 import com.rs2.game.bots.BotHandler;
@@ -187,7 +186,7 @@ public class GameEngine {
 			System.exit(1);
 		}
 
-		IndexedFileSystem cache = new IndexedFileSystem(Paths.get(Constants.FILE_SYSTEM_DIR), true);
+		IndexedFileSystem cache = new IndexedFileSystem(Paths.get(GameConstants.FILE_SYSTEM_DIR), true);
 		new ObjectDefinitionDecoder(cache).run();
 		new ItemDefinitionDecoder(cache).run();
 		

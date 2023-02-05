@@ -14,6 +14,8 @@ import org.apollo.net.update.OnDemandRequestWorker;
 import org.apollo.net.update.RequestWorker;
 import org.apollo.net.update.UpdateDispatcher;
 
+import com.rs2.GameConstants;
+
 /**
  * A class which manages the pool of request workers.
  * @author Graham
@@ -64,7 +66,7 @@ public final class RequestWorkerPool {
 	 * @throws Exception if the file system cannot be created.
 	 */
 	public void start() throws Exception {
-		Path base = Paths.get(Constants.FILE_SYSTEM_DIR);
+		Path base = Paths.get(GameConstants.FILE_SYSTEM_DIR);
 		for (int i = 0; i < THREADS_PER_REQUEST_TYPE; i++) {
 			workers.add(new JagGrabRequestWorker(dispatcher, new IndexedFileSystem(base, true)));
 			workers.add(new OnDemandRequestWorker(dispatcher, new IndexedFileSystem(base, true)));

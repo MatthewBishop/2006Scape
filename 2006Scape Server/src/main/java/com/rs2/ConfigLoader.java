@@ -3,10 +3,13 @@ package com.rs2;
 import com.rs2.integrations.PlayersOnlineWebsite;
 import com.rs2.integrations.RegisteredAccsWebsite;
 import com.rs2.integrations.discord.JavaCord;
+
+import org.apollo.net.NetworkConstants;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.*;
+import java.math.BigInteger;
 import java.util.stream.Collectors;
 
 public class ConfigLoader {
@@ -68,6 +71,18 @@ public class ConfigLoader {
             }
             if(obj.has("website_integration"))
             GameConstants.WEBSITE_INTEGRATION = obj.getBoolean("website_integration");
+            if(obj.has("file_system_dir"))
+            GameConstants.FILE_SYSTEM_DIR = obj.getString("file_system_dir");
+            if(obj.has("http_port"))
+            GameConstants.HTTP_PORT = obj.getInt("http_port");
+            if(obj.has("jaggrab_port"))
+            GameConstants.JAGGRAB_PORT = obj.getInt("jaggrab_port");
+            if(obj.has("rsa_exponent"))
+                NetworkConstants.RSA_EXPONENT = new BigInteger(obj.getString("rsa_exponent"));
+            if(obj.has("rsa_modulus"))
+            	NetworkConstants.RSA_MODULUS = new BigInteger(obj.getString("rsa_modulus"));           
+
+            	
     }
 
     private static void initialize() {

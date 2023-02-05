@@ -75,7 +75,7 @@ public final class FileServer {
 	public SocketAddress service = new InetSocketAddress((GameConstants.WORLD == 1) ? 43594 : 43596 + GameConstants.WORLD);
 
 	public void start() throws Exception {
-		if (!new File(Constants.FILE_SYSTEM_DIR).exists())
+		if (!new File(GameConstants.FILE_SYSTEM_DIR).exists())
 		{
 			System.out.println("Working Directory = " + System.getProperty("user.dir"));
 			System.out.println("************************************");
@@ -100,8 +100,8 @@ public final class FileServer {
 		logger.info("Starting services...");
 		
 		init();
-		SocketAddress http = new InetSocketAddress(NetworkConstants.HTTP_PORT);
-		SocketAddress jaggrab = new InetSocketAddress(NetworkConstants.JAGGRAB_PORT);
+		SocketAddress http = new InetSocketAddress(GameConstants.HTTP_PORT);
+		SocketAddress jaggrab = new InetSocketAddress(GameConstants.JAGGRAB_PORT);
 
 		bind(service, http, jaggrab);
 		
