@@ -36,9 +36,9 @@ public class ItemOnNpc implements PacketType {
 				return;
 			}
 			break;
-			case 43:
-				NpcHandler.npcs[i].shearSheep(player, 1735, 1737, 893, 43, 42, 50);
-				break;
+//			case 43:
+//				NpcHandler.npcs[i].shearSheep(player, 1735, 1737, 893, 43, 42, 50);
+//				break;
 		}
 		if (player.getItemAssistant().playerHasItem(995, 1) && npcId == 736) {
 			player.getItemAssistant().deleteItem(995, 1);

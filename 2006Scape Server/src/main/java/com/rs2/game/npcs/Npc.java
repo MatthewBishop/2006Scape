@@ -63,40 +63,7 @@ public class Npc {
     	transformUpdateRequired = true;
     	updateRequired = true;
 	}
-	
-	public void shearSheep(Player player, int itemNeeded, int itemGiven, int animation, final int currentId, final int newId, int transformTime) {
-		if (!player.getItemAssistant().playerHasItem(itemNeeded)) {
-			player.getPacketSender().sendMessage("You need " + DeprecatedItems.getItemName(itemNeeded).toLowerCase() + " to do that.");
-			return;
-		}
-		if (transformId == newId) {
-			player.getPacketSender().sendMessage("This sheep has already been shorn.");
-			return;
-		}
-		if (NpcHandler.npcs[npcId].isTransformed) {
-			return;
-		}
-		if (animation > 0) {
-			player.startAnimation(animation);
-		}
-		requestTransform(newId);
-		player.getItemAssistant().addItem(itemGiven, 1);
-		player.getPacketSender().sendMessage("You get some " + DeprecatedItems.getItemName(itemGiven).toLowerCase() + ".");
-		CycleEventHandler.getSingleton().addEvent(player, new CycleEvent() {
-
-			@Override
-			public void execute(CycleEventContainer container) {
-				requestTransform(currentId);
-				container.stop();
-			}
-
-			@Override
-			public void stop() {
-				NpcHandler.npcs[npcId].isTransformed = false;
-			}
-		}, transformTime);
-	}
-	
+		
 	public void appendTransformUpdate(Stream str) {
     	str.writeWordBigEndianA(transformId);
 	}
