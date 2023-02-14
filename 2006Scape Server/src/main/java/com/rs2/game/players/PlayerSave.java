@@ -6,10 +6,14 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonIOException;
+import com.google.gson.JsonSyntaxException;
 import com.rs2.util.Misc;
 
 public class PlayerSave {
 
+	private static Gson gson = new Gson();
 	/**
 	 * Loading
 	 **/
@@ -53,6 +57,15 @@ public class PlayerSave {
 		} catch (IOException ioexception) {
 			Misc.println(playerName + ": error loading file.");
 			return 3;
+		}
+		if(true) {// skip parsing text file to confim that loading works.
+			try {
+				PlayerData data = gson.fromJson(new FileReader(System.getProperty("user.dir") + "/data/characters/" + player.playerName + ".json"), PlayerData.class);
+				data.loadPlayer(player);
+			} catch (JsonSyntaxException | JsonIOException | FileNotFoundException e) {
+				e.printStackTrace();
+			}
+			return 1;
 		}
 		while (EndOfFile == false && line != null) {
 			line = line.trim();
@@ -568,7 +581,17 @@ public class PlayerSave {
 		if (tbTime > 300000 || tbTime < 0) {
 			tbTime = 0;
 		}
-
+		if(true) {// skip saving text file to confim that saving works.
+			PlayerData data = new PlayerData(player);
+			try {
+				gson.toJson(data, new FileWriter(System.getProperty("user.dir") + "/data/characters/" + player.playerName + ".json"));
+				return true;
+			} catch (JsonIOException | IOException e) {
+				e.printStackTrace();
+			}
+			return false;
+		}
+			
 		BufferedWriter characterfile = null;
 		try {
 			String filePath = System.getProperty("user.dir") + "/data/characters/" + player.playerName + ".txt";
