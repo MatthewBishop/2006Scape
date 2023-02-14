@@ -1,10 +1,9 @@
 package com.rs2.game.shops;
 
+import com.rs2.Constants;
 import org.apollo.cache.def.ItemDefinition;
 
-import com.rs2.GameConstants;
 import com.rs2.game.bots.BotHandler;
-import com.rs2.game.items.ItemData;
 import com.rs2.game.items.DeprecatedItems;
 import com.rs2.game.items.ItemConstants;
 import com.rs2.game.players.Player;
@@ -81,9 +80,9 @@ public class ShopAssistant {
 						{
 						player.getOutStream().writeByte(ShopHandler.shopItemsN[ShopID][i]);
 					}
-					if (ShopHandler.shopItems[ShopID][i] > GameConstants.ITEM_LIMIT
+					if (ShopHandler.shopItems[ShopID][i] > Constants.ITEM_LIMIT
 							|| ShopHandler.shopItems[ShopID][i] < 0) {
-						ShopHandler.shopItems[ShopID][i] = GameConstants.ITEM_LIMIT;
+						ShopHandler.shopItems[ShopID][i] = Constants.ITEM_LIMIT;
 					}
 					player.getOutStream().writeWordBigEndianA(
 							ShopHandler.shopItems[ShopID][i]);
@@ -266,7 +265,25 @@ public class ShopAssistant {
 			return 75000;
 		case 6568:
 			return 90000;
-		}
+		case 440: // Iron ore
+			return 25;
+		case 442: // Silver ore
+			return 112;
+		case 444: // Gold ore
+			return 225;
+		case 447: // Mithril ore
+			return 243;
+		case 449: // Adamantite ore
+			return 600;
+		case 451: // Runite ore
+			return 4800;
+		case 1619: // Uncut ruby
+			return 150;
+		case 1617: // Uncut diamond
+			return 300;
+		case 1631: // Uncut dragonstone
+			return 1500;
+		}		
 		return 0;
 	}
 
@@ -342,7 +359,7 @@ public class ShopAssistant {
 				return false;
 			}
 		}
-		if (player.playerRights == 2 && !GameConstants.ADMIN_CAN_SELL_ITEMS) {
+		if (player.playerRights == 2 && !Constants.ADMIN_CAN_SELL_ITEMS) {
 			player.getPacketSender().sendMessage("Selling items as an admin has been disabled.");
 			return false;
 		}

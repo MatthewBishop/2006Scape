@@ -1,8 +1,8 @@
 package com.rs2.game.content.consumables;
 
+import com.rs2.Constants;
 import org.apollo.cache.def.ItemDefinition;
 
-import com.rs2.GameConstants;
 import com.rs2.event.CycleEvent;
 import com.rs2.event.CycleEventContainer;
 import com.rs2.event.CycleEventHandler;
@@ -23,7 +23,7 @@ public class Potions {
 					"You may not drink potions in this duel.");
 			return;
 		}
-		if (c.isDead || c.playerLevel[GameConstants.HITPOINTS] <= 0) {
+		if (c.isDead || c.playerLevel[Constants.HITPOINTS] <= 0) {
 			return;
 		}
 		if (System.currentTimeMillis() - c.potDelay >= 1200) {
@@ -330,14 +330,14 @@ public class Potions {
 		// c.startAnimation(829);
 		c.playerItems[slot] = replaceItem + 1;
 		c.getItemAssistant().resetItems(3214);
-		c.playerLevel[GameConstants.PRAYER] += c.getLevelForXP(c.playerXP[GameConstants.PRAYER]) * .33;
+		c.playerLevel[Constants.PRAYER] += c.getPlayerAssistant().getLevelForXP(c.playerXP[Constants.PRAYER]) * .33;
 		if (rest) {
-			c.playerLevel[GameConstants.PRAYER] += 1;
+			c.playerLevel[Constants.PRAYER] += 1;
 		}
-		if (c.playerLevel[GameConstants.PRAYER] > c.getLevelForXP(c.playerXP[GameConstants.PRAYER])) {
-			c.playerLevel[GameConstants.PRAYER] = c.getLevelForXP(c.playerXP[GameConstants.PRAYER]);
+		if (c.playerLevel[Constants.PRAYER] > c.getPlayerAssistant().getLevelForXP(c.playerXP[Constants.PRAYER])) {
+			c.playerLevel[Constants.PRAYER] = c.getPlayerAssistant().getLevelForXP(c.playerXP[Constants.PRAYER]);
 		}
-		c.getPlayerAssistant().refreshSkill(GameConstants.PRAYER);
+		c.getPlayerAssistant().refreshSkill(Constants.PRAYER);
 		if (rest) {
 			restoreStats();
 		}
@@ -348,10 +348,10 @@ public class Potions {
 			if (j == 5 || j == 3) {
 				continue;
 			}
-			if (c.playerLevel[j] < c.getLevelForXP(c.playerXP[j])) {
-				c.playerLevel[j] += c.getLevelForXP(c.playerXP[j]) * .33;
-				if (c.playerLevel[j] > c.getLevelForXP(c.playerXP[j])) {
-					c.playerLevel[j] = c.getLevelForXP(c.playerXP[j]);
+			if (c.playerLevel[j] < c.getPlayerAssistant().getLevelForXP(c.playerXP[j])) {
+				c.playerLevel[j] += c.getPlayerAssistant().getLevelForXP(c.playerXP[j]) * .33;
+				if (c.playerLevel[j] > c.getPlayerAssistant().getLevelForXP(c.playerXP[j])) {
+					c.playerLevel[j] = c.getPlayerAssistant().getLevelForXP(c.playerXP[j]);
 				}
 				c.getPlayerAssistant().refreshSkill(j);
 				c.getPacketSender().setSkillLevel(j, c.playerLevel[j],
@@ -374,21 +374,21 @@ public class Potions {
 			c.getPacketSender().setSkillLevel(tD, c.playerLevel[tD],
 					c.playerXP[tD]);
 		}
-		c.playerLevel[GameConstants.ATTACK] += getBrewStat(0, .20);
-		if (c.playerLevel[GameConstants.ATTACK] > c.getLevelForXP(c.playerXP[GameConstants.ATTACK]) * 1.2 + 1) {
-			c.playerLevel[GameConstants.ATTACK] = (int) (c.getLevelForXP(c.playerXP[GameConstants.ATTACK]) * 1.2);
+		c.playerLevel[Constants.ATTACK] += getBrewStat(0, .20);
+		if (c.playerLevel[Constants.ATTACK] > c.getPlayerAssistant().getLevelForXP(c.playerXP[Constants.ATTACK]) * 1.2 + 1) {
+			c.playerLevel[Constants.ATTACK] = (int) (c.getPlayerAssistant().getLevelForXP(c.playerXP[Constants.ATTACK]) * 1.2);
 		}
-		c.playerLevel[GameConstants.STRENGTH] += getBrewStat(2, .12);
-		if (c.playerLevel[GameConstants.STRENGTH] > c.getLevelForXP(c.playerXP[GameConstants.STRENGTH]) * 1.2 + 1) {
-			c.playerLevel[GameConstants.STRENGTH] = (int) (c.getLevelForXP(c.playerXP[GameConstants.STRENGTH]) * 1.2);
+		c.playerLevel[Constants.STRENGTH] += getBrewStat(2, .12);
+		if (c.playerLevel[Constants.STRENGTH] > c.getPlayerAssistant().getLevelForXP(c.playerXP[Constants.STRENGTH]) * 1.2 + 1) {
+			c.playerLevel[Constants.STRENGTH] = (int) (c.getPlayerAssistant().getLevelForXP(c.playerXP[Constants.STRENGTH]) * 1.2);
 		}
-		c.playerLevel[GameConstants.PRAYER] += getBrewStat(5, .10);
-		if (c.playerLevel[GameConstants.PRAYER] > c.getLevelForXP(c.playerXP[GameConstants.PRAYER]) * 1.2 + 1) {
-			c.playerLevel[GameConstants.PRAYER] = (int) (c.getLevelForXP(c.playerXP[GameConstants.PRAYER]) * 1.2);
+		c.playerLevel[Constants.PRAYER] += getBrewStat(5, .10);
+		if (c.playerLevel[Constants.PRAYER] > c.getPlayerAssistant().getLevelForXP(c.playerXP[Constants.PRAYER]) * 1.2 + 1) {
+			c.playerLevel[Constants.PRAYER] = (int) (c.getPlayerAssistant().getLevelForXP(c.playerXP[Constants.PRAYER]) * 1.2);
 		}
 		c.getPlayerAssistant().refreshSkill(0);
-		c.getPlayerAssistant().refreshSkill(GameConstants.STRENGTH);
-		c.getPlayerAssistant().refreshSkill(GameConstants.PRAYER);
+		c.getPlayerAssistant().refreshSkill(Constants.STRENGTH);
+		c.getPlayerAssistant().refreshSkill(Constants.PRAYER);
 		c.hitUpdateRequired = true;
 		c.hitDiff = 9;
 	}
@@ -412,17 +412,17 @@ public class Potions {
 			c.getPacketSender().setSkillLevel(tD, c.playerLevel[tD],
 					c.playerXP[tD]);
 		}
-		c.playerLevel[GameConstants.DEFENCE] += getBrewStat(1, .20);
-		if (c.playerLevel[GameConstants.DEFENCE] > c.getLevelForXP(c.playerXP[GameConstants.DEFENCE]) * 1.2 + 1) {
-			c.playerLevel[GameConstants.DEFENCE] = (int) (c.getLevelForXP(c.playerXP[GameConstants.DEFENCE]) * 1.2);
+		c.playerLevel[Constants.DEFENCE] += getBrewStat(1, .20);
+		if (c.playerLevel[Constants.DEFENCE] > c.getPlayerAssistant().getLevelForXP(c.playerXP[Constants.DEFENCE]) * 1.2 + 1) {
+			c.playerLevel[Constants.DEFENCE] = (int) (c.getPlayerAssistant().getLevelForXP(c.playerXP[Constants.DEFENCE]) * 1.2);
 		}
-		c.getPlayerAssistant().refreshSkill(GameConstants.DEFENCE);
+		c.getPlayerAssistant().refreshSkill(Constants.DEFENCE);
 
-		c.playerLevel[GameConstants.HITPOINTS] += getBrewStat(3, .15);
-		if (c.playerLevel[GameConstants.HITPOINTS] > c.getLevelForXP(c.playerXP[GameConstants.HITPOINTS]) * 1.17 + 1) {
-			c.playerLevel[GameConstants.HITPOINTS] = (int) (c.getLevelForXP(c.playerXP[GameConstants.HITPOINTS]) * 1.17);
+		c.playerLevel[Constants.HITPOINTS] += getBrewStat(3, .15);
+		if (c.playerLevel[Constants.HITPOINTS] > c.getPlayerAssistant().getLevelForXP(c.playerXP[Constants.HITPOINTS]) * 1.17 + 1) {
+			c.playerLevel[Constants.HITPOINTS] = (int) (c.getPlayerAssistant().getLevelForXP(c.playerXP[Constants.HITPOINTS]) * 1.17);
 		}
-		c.getPlayerAssistant().refreshSkill(GameConstants.HITPOINTS);
+		c.getPlayerAssistant().refreshSkill(Constants.HITPOINTS);
 	}
 
 	public void enchanceStat(int skillID, boolean sup) {
@@ -442,19 +442,19 @@ public class Potions {
 	}
 
 	public int getBrewStat(int skill, double amount) {
-		return (int) (c.getLevelForXP(c.playerXP[skill]) * amount);
+		return (int) (c.getPlayerAssistant().getLevelForXP(c.playerXP[skill]) * amount);
 	}
 
 	public int getBoostedStat(int skill, boolean sup) {
 		int increaseBy;
 		if (sup) {
-			increaseBy = (int) (c.getLevelForXP(c.playerXP[skill]) * .20);
+			increaseBy = (int) (c.getPlayerAssistant().getLevelForXP(c.playerXP[skill]) * .20);
 		} else {
-			increaseBy = (int) (c.getLevelForXP(c.playerXP[skill]) * .13) + 1;
+			increaseBy = (int) (c.getPlayerAssistant().getLevelForXP(c.playerXP[skill]) * .13) + 1;
 		}
-		if (c.playerLevel[skill] + increaseBy > c
+		if (c.playerLevel[skill] + increaseBy > c.getPlayerAssistant()
 				.getLevelForXP(c.playerXP[skill]) + increaseBy + 1) {
-			return c.getLevelForXP(c.playerXP[skill]) + increaseBy
+			return c.getPlayerAssistant().getLevelForXP(c.playerXP[skill]) + increaseBy
 					- c.playerLevel[skill];
 		}
 		return increaseBy;

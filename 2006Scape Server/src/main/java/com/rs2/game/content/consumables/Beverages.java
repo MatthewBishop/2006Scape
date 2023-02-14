@@ -1,28 +1,26 @@
 package com.rs2.game.content.consumables;
 
-import com.rs2.GameConstants;
+import com.rs2.Constants;
 import com.rs2.event.*;
 import com.rs2.game.players.Player;
 import com.rs2.util.Misc;
-
+import static com.rs2.game.content.StaticItemList.*;
 public class Beverages {
 
-	private static final int BEER_GLASS = 1919;
-
 	public static enum beverageData {
-		BEER(1917, BEER_GLASS, 829, true, false, false, false), 
-		BEER1(7740, BEER_GLASS, 829, true, false, false, false),
-				GROG(1915, BEER_GLASS, 829, true, false, false, false), 
-				BANDITS_BREW(4627, BEER_GLASS, 829, true, false, false, false), 
-				DRAGON_BITTER(1911, BEER_GLASS, 829, true, false, false, false), 
-				CIDER(7752,BEER_GLASS, 829, true, false, false, false), 
-				MATURE_CIDER(5765, BEER_GLASS, 829, true, false, false, false), 
-				MOONLIGHT_MEAD(7750, BEER_GLASS, 829, true, false, false, false), 
-				DWARVEN_STOUT(1913, BEER_GLASS, 829, true, false, false, false), 
-				GREENMANS_ALE(1909, BEER_GLASS, 829, true, false, false, false), 
-				CHEFS_DELIGHT(7754, BEER_GLASS, 829, true, false, false, false), 
-				ASGARNIAN_ALE(1905, BEER_GLASS, 829, true, false, false, false), 
-				WIZARDS_MIND_BOMB(1907, BEER_GLASS, 829, true, false, false, false);
+		BEER_(BEER, BEER_GLASS, 829, true, false, false, false),
+		BEER1_(BEER_7740, BEER_GLASS, 829, true, false, false, false),
+		GROG_(GROG, BEER_GLASS, 829, true, false, false, false),
+		BANDITS_BREW_(BANDITS_BREW, BEER_GLASS, 829, true, false, false, false),
+		DRAGON_BITTER_(DRAGON_BITTER, BEER_GLASS, 829, true, false, false, false),
+		CIDER_(CIDER_7752, BEER_GLASS, 829, true, false, false, false),
+		MATURE_CIDER_(MATURE_CIDER, BEER_GLASS, 829, true, false, false, false),
+		MOONLIGHT_MEAD_(MOONLIGHT_MEAD_7750, BEER_GLASS, 829, true, false, false, false),
+		DWARVEN_STOUT_(DWARVEN_STOUT, BEER_GLASS, 829, true, false, false, false),
+		GREENMANS_ALE_(GREENMANS_ALE, BEER_GLASS, 829, true, false, false, false),
+		CHEFS_DELIGHT_(CHEFS_DELIGHT_7754, BEER_GLASS, 829, true, false, false, false),
+		ASGARNIAN_ALE_(ASGARNIAN_ALE, BEER_GLASS, 829, true, false, false, false),
+		WIZARDS_MIND_BOMB_(WIZARDS_MIND_BOMB, BEER_GLASS, 829, true, false, false, false);
 
 		private int bevId, replacement, bevAnim;
 		private boolean effect1, effect2, effect3, effect4;
@@ -129,50 +127,50 @@ public class Beverages {
 		switch (id) {
 		case 1917:
 		case 7740://beer
-			double beerEffectStrength = c.getLevelForXP(c.playerXP[GameConstants.STRENGTH]) * .04 + c.getLevelForXP(c.playerXP[GameConstants.STRENGTH]);
-			double beerEffectAttack = c.getLevelForXP(c.playerXP[GameConstants.ATTACK]) * .07;
-			if (c.playerLevel[GameConstants.STRENGTH] < beerEffectStrength) {
-				c.playerLevel[GameConstants.STRENGTH] = (int) beerEffectStrength;
+			double beerEffectStrength = c.getPlayerAssistant().getLevelForXP(c.playerXP[Constants.STRENGTH]) * .04 + c.getPlayerAssistant().getLevelForXP(c.playerXP[Constants.STRENGTH]);
+			double beerEffectAttack = c.getPlayerAssistant().getLevelForXP(c.playerXP[Constants.ATTACK]) * .07;
+			if (c.playerLevel[Constants.STRENGTH] < beerEffectStrength) {
+				c.playerLevel[Constants.STRENGTH] = (int) beerEffectStrength;
 			}
-			if (c.playerLevel[GameConstants.ATTACK] > 0) {
-				c.playerLevel[GameConstants.ATTACK] -= beerEffectAttack;
+			if (c.playerLevel[Constants.ATTACK] > 0) {
+				c.playerLevel[Constants.ATTACK] -= beerEffectAttack;
 			}
-			if (c.playerLevel[GameConstants.ATTACK] <= 0) {
-				c.playerLevel[GameConstants.ATTACK] = 1;
+			if (c.playerLevel[Constants.ATTACK] <= 0) {
+				c.playerLevel[Constants.ATTACK] = 1;
 			}
 			c.getPlayerAssistant().refreshSkill(0);
-			c.getPlayerAssistant().refreshSkill(GameConstants.STRENGTH);
+			c.getPlayerAssistant().refreshSkill(Constants.STRENGTH);
 			break;
 		case 1913: //dwarven stout
-			c.playerLevel[GameConstants.MINING] = c.getPlayerAssistant().getLevelForXP(c.playerXP[GameConstants.MINING]) + 1;
-			c.playerLevel[GameConstants.SMITHING] = c.getPlayerAssistant().getLevelForXP(c.playerXP[GameConstants.SMITHING]) + 1;
-			c.getPlayerAssistant().refreshSkill(GameConstants.MINING);
-			c.getPlayerAssistant().refreshSkill(GameConstants.SMITHING);
+			c.playerLevel[Constants.MINING] = c.getPlayerAssistant().getLevelForXP(c.playerXP[Constants.MINING]) + 1;
+			c.playerLevel[Constants.SMITHING] = c.getPlayerAssistant().getLevelForXP(c.playerXP[Constants.SMITHING]) + 1;
+			c.getPlayerAssistant().refreshSkill(Constants.MINING);
+			c.getPlayerAssistant().refreshSkill(Constants.SMITHING);
 		break;
 		case 1907://wizard's mind bomb
-			if (c.playerLevel[GameConstants.MAGIC] < 50) {
-				c.playerLevel[GameConstants.MAGIC] = c.getPlayerAssistant().getLevelForXP(c.playerXP[GameConstants.MAGIC]) + 2;
+			if (c.playerLevel[Constants.MAGIC] < 50) {
+				c.playerLevel[Constants.MAGIC] = c.getPlayerAssistant().getLevelForXP(c.playerXP[Constants.MAGIC]) + 2;
 			} else {
-				c.playerLevel[GameConstants.MAGIC] = c.getPlayerAssistant().getLevelForXP(c.playerXP[GameConstants.MAGIC]) + 3;
+				c.playerLevel[Constants.MAGIC] = c.getPlayerAssistant().getLevelForXP(c.playerXP[Constants.MAGIC]) + 3;
 			}
-			c.playerLevel[GameConstants.STRENGTH] = c.getPlayerAssistant().getLevelForXP(c.playerXP[GameConstants.STRENGTH]) - 3;
-			c.playerLevel[GameConstants.DEFENCE] = c.getPlayerAssistant().getLevelForXP(c.playerXP[GameConstants.DEFENCE]) - 3;
-			c.playerLevel[GameConstants.ATTACK] = c.getPlayerAssistant().getLevelForXP(c.playerXP[GameConstants.ATTACK]) - 4;
-			c.getPlayerAssistant().refreshSkill(GameConstants.DEFENCE);
-			c.getPlayerAssistant().refreshSkill(GameConstants.MAGIC);
-			c.getPlayerAssistant().refreshSkill(GameConstants.ATTACK);
-			c.getPlayerAssistant().refreshSkill(GameConstants.STRENGTH);
+			c.playerLevel[Constants.STRENGTH] = c.getPlayerAssistant().getLevelForXP(c.playerXP[Constants.STRENGTH]) - 3;
+			c.playerLevel[Constants.DEFENCE] = c.getPlayerAssistant().getLevelForXP(c.playerXP[Constants.DEFENCE]) - 3;
+			c.playerLevel[Constants.ATTACK] = c.getPlayerAssistant().getLevelForXP(c.playerXP[Constants.ATTACK]) - 4;
+			c.getPlayerAssistant().refreshSkill(Constants.DEFENCE);
+			c.getPlayerAssistant().refreshSkill(Constants.MAGIC);
+			c.getPlayerAssistant().refreshSkill(Constants.ATTACK);
+			c.getPlayerAssistant().refreshSkill(Constants.STRENGTH);
 		break;
 		case 1915://grog
-			c.playerLevel[GameConstants.STRENGTH] = c.getPlayerAssistant().getLevelForXP(c.playerXP[GameConstants.STRENGTH]) + 3;
-			if (c.playerLevel[GameConstants.ATTACK] > 0) {
-				c.playerLevel[GameConstants.ATTACK] = c.getPlayerAssistant().getLevelForXP(c.playerXP[GameConstants.ATTACK]) - 2;
+			c.playerLevel[Constants.STRENGTH] = c.getPlayerAssistant().getLevelForXP(c.playerXP[Constants.STRENGTH]) + 3;
+			if (c.playerLevel[Constants.ATTACK] > 0) {
+				c.playerLevel[Constants.ATTACK] = c.getPlayerAssistant().getLevelForXP(c.playerXP[Constants.ATTACK]) - 2;
 			}
-			if (c.playerLevel[GameConstants.ATTACK] <= 0) {
-				c.playerLevel[GameConstants.ATTACK] = 1;
+			if (c.playerLevel[Constants.ATTACK] <= 0) {
+				c.playerLevel[Constants.ATTACK] = 1;
 			}
 			c.getPlayerAssistant().refreshSkill(0);
-			c.getPlayerAssistant().refreshSkill(GameConstants.STRENGTH);
+			c.getPlayerAssistant().refreshSkill(Constants.STRENGTH);
 			break;
 		}
 	}

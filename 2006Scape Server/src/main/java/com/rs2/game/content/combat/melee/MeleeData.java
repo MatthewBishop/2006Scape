@@ -1,11 +1,12 @@
 package com.rs2.game.content.combat.melee;
 
-import com.rs2.GameConstants;
+import com.rs2.Constants;
 import com.rs2.game.content.combat.magic.MagicData;
 import com.rs2.game.items.DeprecatedItems;
 import com.rs2.game.items.ItemConstants;
 import com.rs2.game.items.impl.Greegree.MonkeyData;
 import com.rs2.game.players.Player;
+import com.rs2.util.Misc;
 
 import static com.rs2.game.content.StaticItemList.TOKTZKETXIL;
 
@@ -19,21 +20,21 @@ public class MeleeData {
     }
 
     public static int calculateMeleeAttack(Player c) {
-        int attackLevel = c.playerLevel[GameConstants.ATTACK];
+        int attackLevel = c.playerLevel[Constants.ATTACK];
         // 2, 5, 11, 18, 19
         if (c.getPrayer().prayerActive[2]) {
-            attackLevel += c.getLevelForXP(c.playerXP[GameConstants.ATTACK]) * 0.05;
+            attackLevel += c.getPlayerAssistant().getLevelForXP(c.playerXP[Constants.ATTACK]) * 0.05;
         } else if (c.getPrayer().prayerActive[7]) {
-            attackLevel += c.getLevelForXP(c.playerXP[GameConstants.ATTACK]) * 0.1;
+            attackLevel += c.getPlayerAssistant().getLevelForXP(c.playerXP[Constants.ATTACK]) * 0.1;
         } else if (c.getPrayer().prayerActive[15]) {
-            attackLevel += c.getLevelForXP(c.playerXP[GameConstants.ATTACK]) * 0.15;
+            attackLevel += c.getPlayerAssistant().getLevelForXP(c.playerXP[Constants.ATTACK]) * 0.15;
         } else if (c.getPrayer().prayerActive[24]) {
-            attackLevel += c.getLevelForXP(c.playerXP[GameConstants.ATTACK]) * 0.15;
+            attackLevel += c.getPlayerAssistant().getLevelForXP(c.playerXP[Constants.ATTACK]) * 0.15;
         } else if (c.getPrayer().prayerActive[25]) {
-            attackLevel += c.getLevelForXP(c.playerXP[GameConstants.ATTACK]) * 0.2;
+            attackLevel += c.getPlayerAssistant().getLevelForXP(c.playerXP[Constants.ATTACK]) * 0.2;
         }
         if (fullVoidMelee(c)) {
-            attackLevel += c.getLevelForXP(c.playerXP[GameConstants.ATTACK]) * 0.1;
+            attackLevel += c.getPlayerAssistant().getLevelForXP(c.playerXP[Constants.ATTACK]) * 0.1;
         }
         attackLevel *= c.specAccuracy;
         // c.sendMessage("Attack: " + (attackLevel +
@@ -61,18 +62,18 @@ public class MeleeData {
     }
 
     public static int calculateMeleeDefence(Player c) {
-        int defenceLevel = c.playerLevel[GameConstants.DEFENCE];
+        int defenceLevel = c.playerLevel[Constants.DEFENCE];
         int i = c.playerBonus[bestMeleeDef(c)];
         if (c.getPrayer().prayerActive[0]) {
-            defenceLevel += c.getLevelForXP(c.playerXP[GameConstants.DEFENCE]) * 0.05;
+            defenceLevel += c.getPlayerAssistant().getLevelForXP(c.playerXP[Constants.DEFENCE]) * 0.05;
         } else if (c.getPrayer().prayerActive[5]) {
-            defenceLevel += c.getLevelForXP(c.playerXP[GameConstants.DEFENCE]) * 0.1;
+            defenceLevel += c.getPlayerAssistant().getLevelForXP(c.playerXP[Constants.DEFENCE]) * 0.1;
         } else if (c.getPrayer().prayerActive[13]) {
-            defenceLevel += c.getLevelForXP(c.playerXP[GameConstants.DEFENCE]) * 0.15;
+            defenceLevel += c.getPlayerAssistant().getLevelForXP(c.playerXP[Constants.DEFENCE]) * 0.15;
         } else if (c.getPrayer().prayerActive[24]) {
-            defenceLevel += c.getLevelForXP(c.playerXP[GameConstants.DEFENCE]) * 0.2;
+            defenceLevel += c.getPlayerAssistant().getLevelForXP(c.playerXP[Constants.DEFENCE]) * 0.2;
         } else if (c.getPrayer().prayerActive[25]) {
-            defenceLevel += c.getLevelForXP(c.playerXP[GameConstants.DEFENCE]) * 0.25;
+            defenceLevel += c.getPlayerAssistant().getLevelForXP(c.playerXP[Constants.DEFENCE]) * 0.25;
         }
         return (int) (defenceLevel + defenceLevel * 0.15 + (i + i * 0.05));
     }
@@ -330,13 +331,21 @@ public class MeleeData {
             return 806;
         }
         if (weaponName.contains("halberd")) {
-            return 440;
+            return c.fightMode == 2 ? 440 : 412;
+        }
+        
+        //pickaxe anims are 395, 400, 401, 395
+        //this is for attack, str, str, and def.
+        if (weaponName.contains("pickaxe")) {
+            switch (c.fightMode) {
+                case 2:
+                	return (Misc.random(1) == 0) ? 400 : 401;
+                default:
+                    return 395;
+            }
         }
         if (weaponName.contains("dragon dagger")) {
             return 402;
-        }
-        if (weaponName.endsWith("dagger")) {
-            return 412;
         }
         if (weaponName.contains("2h sword") || weaponName.contains("godsword")
                 || weaponName.contains("aradomin sword")) {
@@ -349,14 +358,21 @@ public class MeleeData {
                     return 407;
             }
         }
-        if (weaponName.contains("sword")) {
-            switch (c.fightMode) {
-                case 0:
-                case 1:
-                    return 412;
-                case 2:
-                    return 451;
-            }
+        if (weaponName.contains("longsword")) {
+        	switch (c.fightMode) {
+        	case 3:
+        		return 412;
+        	default:
+        		return 451;
+        	}
+        }
+        if (weaponName.contains("sword") || weaponName.endsWith("dagger")) {
+        	switch (c.fightMode) {
+        	case 3:
+        		return 451;
+        	default:
+        		return 412;
+        	}
         }
         if (weaponName.contains("karil")) {
             return 2075;
